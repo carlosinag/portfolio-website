@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Website</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+        border: none;
+        outline: none;
+        scroll-behavior: smooth;
+        font-family: 'Montserrat';
+    }
+    :root {
+        --bg-color: black; 
+        --second-bg-color: #070707; 
+        --text-color: white;
+        --main-color: #FFA500;
+    }
+    html {
+        font-size: 60%;
+        overflow-x: hidden;
+    }
+    body {
+        background: var(--bg-color);
+        color: var(--text-color);
+    }
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 4rem 12% 4rem;
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 5;
+        height: 95px;
+    }
+    .logo:hover {
+        transform: scale(1.1);
+    }
+    .logo img {
+        width: 200px;
+        cursor: pointer;
+        transition: 0.3 ease;
+    }
+    .navbar a {
+        font-size: 2rem;
+        color: var(--text-color);
+        margin-left: 4rem;
+        font-weight: 700;
+        transition: 0.3s ease;
+        border-bottom: 3px solid transparent;
+    }
+    .navbar a:hover {
+        color: var(--main-color);
+        border-bottom: 3px solid var(--main-color);
+    }
+    #menu-icon {
+        font-size: 3.6rem;
+        color: var(--main-color);
+        display: none;
+    }
+    section {
+        min-height: 100vh;
+        padding: 10rem 12% 10rem;
+    }
+    .home {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15rem;
+    }
+    .home-content {
+        display: flex;
+        flex-direction: column;
+        align-items: baseline;
+        text-align: left;
+        justify-content: center;
+        margin-top: 3rem;
+    }
+    span {
+        color: var(--main-color);
+    }
+    .home-content h3 {
+        margin-bottom: 2rem;
+        margin-top: 1.5rem;
+        font-size: 3.5rem;
+    }
+    .home-content h1 {
+        font-size: 7rem;
+        font-weight: 700;
+        margin-top: 1.5 rem;
+        line-height: 1;
+    }
+    .home-img img {
+        position: relative;
+        top: 3rem;
+        width: 32vw;
+        border-radius: 1%;
+        box-shadow: 0 0 25px var(--main-color);
+        cursor: pointer;
+        transition: 0.4 ease-in-out;
+    }
+    .home-img img:hover {
+        box-shadow: 0 0 25px var(--main-color),
+                    0 0 50px var(--main-color),
+                    0 0 100px var(--main-color),
+    }
+    .home-content p {
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 30px;
+        max-width: 1000px;
+        padding-top: 10px;
+        padding-bottom: 20px;
+        text-align: justify;
+    }
+    .btn {
+        display: inline-block;
+        padding: 15px;
+        background: var(--main-color);
+        box-shadow: 0 0 25px var(--main-color);
+        border-radius: 25px;
+        font-size: 30px;
+        color: black;
+        border: 2px solid transparent;
+        letter-spacing: 0.1rem;
+        font-weight: bolder;
+        transition: 0.3 ease-in-out;
+        cursor: pointer;
+        height: 8rem;
+        width: 26rem;
+        text-align: center;
+        align-items: center;
+        font-family: 'Montserrat';
+    }
+    .btn-group {
+        padding-left: 200px;
+        padding-top: 40px;
+    }
+    .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 50px var(--main-color);
+    }
+    .dlbtn {
+        text-align: center;
+        padding-top: 20px;
+    }
+    /* about------------------------------------------------------------------------------------------------------- */
+    .about{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        background: var(--second-bg-color);
+    }
+    .about-img img{
+        width: 35vw;
+    }
+    .about-content h2{
+        text-align: center;
+        line-height: 1.2;
+        font-size: 70px;
+        padding: 0%;
+    }
+    .about-content p{
+        font-size: 1.6rem;
+        margin: 2rem 0 3rem;
+        line-height: 30px;
+        text-align: justify;
+    }
+    
+    /* -------------------------------------------------------------------------------------------------------------------- */
+    .works{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        background: var(--bg-color);
+    }
+    .works-img img{
+        width: 20vw;
+    }
+    .works-container-title{
+        grid-column: 1/-1;
+        text-align: center;
+        padding: 0%;
+        font-size: 50px;
+    }
+    .works-container{
+        padding-top: 0;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+        gap: 5.5rem;
+    }
+    .works-container .works-box{
+        position: relative;
+        border-radius: 2rem;
+        box-shadow: 0 0 1rem var(--bg-color);
+        overflow: hidden;
+        display: flex;
+    }
+    .works-box img{
+        width: 100%;
+        transition: .5s ease;
+    }
+    .works-box:hover img{
+        transform: scale(1.1);
+    }
+    .works-box .works-layer{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(rgba(0, 0, 0, .1), var(--main-color));
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        padding: 0 4rem;
+        transform: translate(100%);
+        transition: .5s ease;
+    }
+    .works-box:hover .works-layer{
+        transform: translate(0);
+    }
+    .works-layer h4{
+        font-size: 3rem;
+    }
+    .works-layer p{
+        font-size: 1.6rem;
+        margin: .3rem 0 1rem;
+    }
+    .works-layer a{
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 5rem;
+        height: 5rem;
+        background: var(--text-color);
+        border-radius: 50%;
+    }
+    .works-layer a i{
+        font-size: 2rem;
+        color: var(--second-bg-color);
+    }
+    /* ---------------------------------------------------------------------------------------------------------------------- */
+    .contact{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        background: var(--second-bg-color);
+    }
+    .contact-container{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+        gap: 5rem;
+    }
+    
+    .contact-container .contact-box{
+        position: relative;
+        border-radius: 2rem;
+        box-shadow: 0 0 1rem var(--bg-color);
+        overflow: hidden;
+        display: flex;
+    }
+    .contact-box img{
+        width: 100%;
+        transition: .5s ease;
+    }
+    .contact-box:hover img{
+        transform: scale(1.1);
+    }
+    .contact-box .contact-layer{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(rgba(0, 0, 0, .1), var(--main-color));
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        padding: 0 4rem;
+        transform: translate(100%);
+        transition: .5s ease;
+    }
+    .contact-box:hover .contact-layer{
+        transform: translate(0);
+    }
+    .contact-layer h4{
+        font-size: 3rem;
+    }
+    .contact-layer p{
+        font-size: 1.6rem;
+        margin: .3rem 0 1rem;
+    }
+    .contact-layer a{
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 5rem;
+        height: 5rem;
+        background: var(--text-color);
+        border-radius: 50%;
+    }
+    .contact-layer a i{
+        font-size: 2rem;
+        color: var(--second-bg-color);
+    }
+    .contact-container-title {
+        grid-column: 1/-1;
+        text-align: center;
+        padding: 0%;
+        font-size: 50px;
+    }
+    /* -------------------------------------------------------------------------------------------------------------------- */
+    .footer{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 2rem 9%;
+        background: var(--bg-color);
+    }
+    .footer-text {
+        padding-left: 60rem;
+        font-size: 20px;
+        text-align: center;
+        align-items: center;
+    }
+    .footer-text p{
+        font-size: 1.6rem;
+    }
+    .footer-icontop a{
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        padding: .8rem;
+        background: var(--main-color);
+        border-radius: .8rem;
+        transition: .5s ease;
+    }
+    .footer-icontop a:hover{
+        box-shadow: 0 0 1rem var(--main-color);
+    }
+    .footer-icontop a i{
+        font-size: 2.4rem;
+        color: var(--second-bg-color);
+    }
+    /* ------------------------------------------------------------------------------------------------------------- */
+    @media (max-width: 1200px){
+        html{
+            font-size: 55%;
+        }
+    }
+    @media (max-width: 991px){
+        .header{
+            padding: 2rem 35;
+        }
+        section{
+            padding: 10rem 3% 2rem;
+        }
+        .home {
+            padding-bottom: 7rem;
+        }
+        .works {
+            padding-bottom: 7rem;
+        }
+        .contact{
+            min-height: auto;
+        }
+        .footer{
+            padding: 2rem 3%;
+        }
+    }
+    @media (max-width: 768px) {
+        #menu-icon {
+            display: block;
+        }
+        .navbar{
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            padding: 1rem 3%;
+            background: var(--bg-color);
+            border-top: .1rem solid rgba(0, 0, 0, .2);
+            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+            display: none;
+        }
+        .navbar.active{
+            display: block;
+        }
+        .navbar a{
+           display: block;
+           font-size: 2rem;
+           margin: 3rem 0; 
+        }
+        .home{
+            flex-direction: column;
+        }
+        .home-content h3{
+            font-size: 2.6rem;
+        }
+        .home-content h1{
+            font-size: 5rem;
+        }
+        .home-img img{
+           width: 70vw;
+           margin-top: 4rem; 
+        }
+        .about{
+            flex-direction: column-reverse;
+        }
+        .about img{
+            width: 70vw;
+            margin-top: 4rem;
+        }
+    
+        
+        .footer-text {
+            font-size: 20px;
+            padding: 0%;
+        }
+        .btn-group{
+            padding: 0%;
+            width: 10px;
+            text-align: center;
+        }
+        .logo img {
+            width: 150px;
+            padding: 0%;
+            margin: 0;
+        }
+        .btn {
+            font-size: 25px;
+        }
+        .footer{
+            flex-direction: column-reverse;
+        }
+        .footer p{
+            text-align: center;
+            margin-top: 2rem;
+        }
+    }
+    @media (max-width: 800px){
+        .works-container{
+            grid-template-columns: 1fr;
+        }
+        .contact-container{
+            grid-template-columns: 1fr;
+        }
+        .works-img {
+            display: none;
+        }
+    }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="#home" class="logo">
+            <img src="image-removebg-preview (4).png" alt="sunray logo">
+        </a>
+        <i class='bx bx-menu' id="menu-icon"></i>
+        <nav class="navbar">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#works">Works</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="home" id="home">
+        <div class="home-content">
+            <h3>Hi! I'm</h3>
+            <h1><span>John Carlo Sinag</span></h1>
+            <h3 class="text-animation">and I'm a <span>Web Developer Student.</span></h3>
+            <p>I am a diligent IT student currently pursuing a Bachelor of Science degree in Information Technology at Dalubhasaan ng Lungsod ng Lucena (DLL). Eager to learn and passionate about technology, I am dedicated to acquiring knowledge and skills in programming, web developing, and cybersecurity. With a proactive approach to learning and a commitment to excellence, I am poised to contribute effectively to the IT industry upon graduation.</p>
+            <div class="btn-group">
+                <a href="#contact" class="btn">Contact Me</a>
+            </div>
+        </div>
+            <div class="home-img">
+                <img src="image-removebg-preview (5).png" alt="My picture">
+            </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-img">
+            <img src="image-removebg-preview (6).png" alt="My picture">
+        </div>
+        <div class="about-content">
+            <h2 class="heading"><span>About Me</span></h2>
+            <p>Currently pursuing my IT degree, I'm continuously expanding my knowledge and skills in various areas of technology. While balancing coursework, I dedicate time to self-study, particularly in coding languages like HTML and CSS. Through practical projects and online tutorials, I've been learning how to build websites from scratch. Though I'm still a student, I'm eager to apply my growing skills to real-world projects and contribute meaningfully to the field of IT.</p>
+            <div class="dlbtn">
+                <a href="https://carlosinag.github.io/online-resume/" class="btn">Download CV</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="works" id="works">
+        <div class="works-img">
+            <img src="image-removebg-preview (7).png" alt="My picture">
+        </div>
+
+        <div class="works-container">
+            <div class="works-container-title"> 
+                <h1><span>My Works</span></h1>
+             </div>
+            <div class="works-box">
+                <img src="olresume.png">
+                <div class="works-layer">
+                    <h4>Online Resume</h4>
+                    <p>Click here to see more.</p>
+                    <a href="https://carlosinag.github.io/online-resume/"><i class='bx bx-link-external'></i></a>
+                </div>
+            </div>
+            <div class="works-box">
+                <img src="calculator.png">
+                <div class="works-layer">
+                    <h4>Calculator</h4>
+                    <p>Click here to see more.</p>
+                    <a href="https://carlosinag.github.io/ipt101-calculator-app/"><i class='bx bx-link-external'></i></a>
+                </div>
+            </div>
+            <div class="works-box">
+                <img src="batobato.png">
+                <div class="works-layer">
+                    <h4>Rock Paper Scissors Game</h4>
+                    <p>Click here to see more.</p>
+                    <a href="https://carlosinag.github.io/rock-paper-scissor/"><i class='bx bx-link-external'></i></a>
+                </div>
+            </div>
+            <div class="works-box">
+                <img src="wrdesign.png">
+                <div class="works-layer">
+                    <h4>works Wireframe</h4>
+                    <p>Click here to see more.</p>
+                    <a href="https://www.figma.com/design/gJmy3CxVeNzLyQSZoV01M6/Sinag's-Portfolio-Website?node-id=0-1&t=1BUDU0nJaexlBEdX-0"><i class='bx bx-link-external'></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <div class="contact-container-title">
+                <h1><span>Contacts</span></h1>
+            </div>
+            <div class="contact-box">
+                <img src="image-removebg-preview (13).png">
+                <div class="contact-layer">
+                    <h4>Facebook</h4>
+                    <p>Click here to send message.</p>
+                    <a href="https://web.facebook.com/johncarlo.sinag/"><i class='bx bx-link-external'></i></a>
+                </div>
+            </div>
+            <div class="contact-box">
+                <img src="image-removebg-preview (12).png">
+                <div class="contact-layer">
+                    <h4>Instagram</h4>
+                    <p>Click here to send message.</p>
+                    <a href="https://www.instagram.com/_johntamad/"><i class='bx bx-link-external'></i></a>
+                </div>
+            </div>
+            <div class="contact-box">
+                <img src="image-removebg-preview (16).png">
+                <div class="contact-layer">
+                    <h4>Gmail</h4>
+                    <p>Click here to send message.</p>
+                    <a href="https://mail.google.com/mail/u/0/#inbox?compose=new"><i class='bx bx-link-external'></i></a>
+                </div>
+            </div>
+            <div class="contact-box">
+                <img src="image-removebg-preview (14).png">
+                <div class="contact-layer">
+                    <h4>Telegram</h4>
+                    <p>Click here to send message.</p>
+                    <a href="https://t.me/janjanjanj4n/"><i class='bx bx-link-external' id=""></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-text">
+            <h4>Copyright © 2024 | All Rights Reserved</h4>
+            <p>Developed by <span>John Carlo Sinag</span></p>
+        </div>
+        <div class="footer-icontop">
+            <a href="#home"><i class='bx bx-up-arrow-alt'></i></a>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+    <script>
+                let menuIcon = document.querySelector('#menu-icon');
+                let navbar = document.querySelector('.navbar');
+
+                menuIcon.onclick = () => {
+                menuIcon.classList.toggle('bx-x');
+                navbar.classList.toggle('active');
+                };
+                let sections = document.querySelectorAll('section');
+                let navLinks = document.querySelectorAll('header nav a');
+
+                window.onscroll = () => {
+                    sections.forEach(sec => {
+                        let top = window.scrollY;
+                        let offset = sec.offsetTop - 150;
+                        let id = sec.getAttribute('id');
+                        if(top >= offset && top < offset + height){
+                            navLinks.forEach(links =>{
+                                links.classList.remove('active');
+                                document.querySelector('header nav a[href*=' + id + ']').classList.add('active');
+                            });
+
+                        };
+
+                    });
+                    let header = document.querySelector('header');
+                    header.classList.toggle('sticky', window.scrollY > 100);
+
+                    menuIcon.classList.remove('bx-x');
+                    navbar.classList.remove('active');
+                };
+                ScrollReveal({
+                    distance: '80px',
+                    duration: 2000,
+                    delay: 200
+                });
+                ScrollReveal().reveal('.home-content, .heading', {origin: 'top'});
+                ScrollReveal().reveal('.home-img, .works-box, .contact form', {origin: 'bottom'});
+                ScrollReveal().reveal('.home-content h1, .about-img', {origin: 'left'});
+                ScrollReveal().reveal('.home-content p, .about-content', {origin: 'right'});
+    </script>
+</body>
+</html>
